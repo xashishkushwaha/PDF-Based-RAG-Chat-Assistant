@@ -10,11 +10,14 @@ import os
 import shutil
 import uuid
 
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 
 import streamlit as st
+
+GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
+
 from dataclasses import dataclass, field
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -163,8 +166,8 @@ def create_agent_once():
 
     rag_state = st.session_state.rag_state  # plain object, safe to close over
     
-    # llm = ChatGroq(model="openai/gpt-oss-20b")
-    llm = ChatOpenAI(model="gpt-5-mini-2025-08-07")
+    llm = ChatGroq(model="openai/gpt-oss-20b")
+    # llm = ChatOpenAI(model="gpt-5-mini-2025-08-07")
     
 
     @tool
